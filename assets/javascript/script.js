@@ -203,9 +203,7 @@
     });
   }
 
-  // *** Event Listeners ***
-
-  leftArrow.addEventListener("click", function () {
+  function onLeftArrowClick() {
     month -= 1;
     if (month === -1) {
       year -= 1;
@@ -216,9 +214,9 @@
     displayMonthYear();
     displayCalendar();
     styleCurrentDate();
-  });
+  }
 
-  rightArrow.addEventListener("click", function () {
+  function onRightArrowClick() {
     month += 1;
     if (month === 12) {
       year += 1;
@@ -229,6 +227,20 @@
     displayMonthYear();
     displayCalendar();
     styleCurrentDate();
+  }
+
+  // *** Event Listeners ***
+
+  leftArrow.addEventListener("click", onLeftArrowClick);
+
+  rightArrow.addEventListener("click", onRightArrowClick);
+
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "ArrowLeft") {
+      onLeftArrowClick();
+    } else if (e.key === "ArrowRight") {
+      onRightArrowClick();
+    }
   });
 
   window.addEventListener("load", function () {
